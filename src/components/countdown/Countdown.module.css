@@ -1,0 +1,29 @@
+body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.boxcount {
+    position: relative;
+    width: 100%;
+}
+
+.box {
+    height: 100px;
+    width: 360px;
+    background: linear-gradient(45deg, black, #002d4e);
+    box-shadow: 8px;
+    border-radius: 8px;
+    color: white;
+    position: relative;
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
