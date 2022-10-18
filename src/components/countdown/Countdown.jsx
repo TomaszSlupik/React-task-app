@@ -7,7 +7,7 @@ function CountDown (props) {
     return (
         <div className={styles.boxcount}>
             <div className={styles.box}>
-                <div>{props.name}</div><strong>{props.time}</strong>
+                <div>{props.name}</div><strong>{props.hour}: {props.minute}</strong>
             </div>
             
         </div>
@@ -16,7 +16,8 @@ function CountDown (props) {
 
 CountDown.propTypes = {
     name: PropTypes.string,
-    time: PropTypes.string
+
+    
 }
 
 export default CountDown

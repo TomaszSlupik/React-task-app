@@ -11,23 +11,47 @@ class App extends Component {
         super()
         this.state = {
             events: [
-                {id:1, name: "śniadanie", time: "07:00"},
-                {id:2, name: "obiad", time: "15:00"},
-                {id:3, name: "kolacja", time: "20:00"},
+                {id:0, name: "śniadanie", hour: "07", minute: "00"},
+                {id:1, name: "obiad", hour: "15", minute: "00"},
+                {id:2, name: "kolacja", hour: "20", minute: "00"},
 
-            ]
+            ],
+            editedEvents: {
+                id:3, name: "", hour: "", minute: ""
+            }
         }
+        this.handleEditEvent = this.handleEditEvent.bind(this)
+        this.addEvent = this.addEvent.bind(this)
+    }
+
+    handleEditEvent (val) {
+        this.setState(prevState =>{
+            return {
+                editedEvents: Object.assign(prevState.editedEvents, val)
+            }
+        })
+    }
+
+    addEvent () {
+        this.setState(prevState => ({
+            events: [...prevState.events, prevState.editedEvents],
+            editedEvents: {
+                id:3, name: "", hour: "", minute: ""
+            }
+        }))
     }
 
     render()
     {
         
          const events = this.state.events.map(el => {
-            return  <CountDown key={el.id} name={el.name} time={el.time}/> }
+            return  <CountDown key={el.id} name={el.name} hour={el.hour} minute={el.minute}/> }
         )
     return (  
     <div>
-        <EditEvent onSave={()=> alert('Wysłana funnkcja do dziecka')} />
+        <EditEvent 
+        onInputChnage={val=>this.handleEditEvent(val)} 
+        onSave={()=> this.addEvent()} />
         <div>{events} </div>
     </div>
     )
