@@ -1,14 +1,8 @@
-body {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 
 .boxcount {
     position: relative;
     width: 100%;
+    margin-top: 3em;
 }
 
 .box {
@@ -27,3 +21,20 @@ body {
     margin-bottom: 1em;
 }
 
+.timeHourMinute {
+    margin-top: 0.6em;
+}
+
+.delete {
+    position: absolute;
+    top: 10%;
+    right: 4%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.times {
+    background-color: white;
+    
+}

@@ -3,6 +3,7 @@ import CountDown from "./components/countdown/Countdown";
 import { Component } from "react";
 import "./App.css"
 import EditEvent from "./components/editEvent/EditEvent";
+import uniqid from 'uniqid'
 
 
 class App extends Component {
@@ -17,11 +18,12 @@ class App extends Component {
 
             ],
             editedEvents: {
-                id:3, name: "", hour: "", minute: ""
+                id:uniqid(), name: "", hour: "", minute: ""
             }
         }
         this.handleEditEvent = this.handleEditEvent.bind(this)
         this.addEvent = this.addEvent.bind(this)
+        this.removeTask = this.removeTask.bind(this)
     }
 
     handleEditEvent (val) {
@@ -36,8 +38,14 @@ class App extends Component {
         this.setState(prevState => ({
             events: [...prevState.events, prevState.editedEvents],
             editedEvents: {
-                id:3, name: "", hour: "", minute: ""
+                id:uniqid(), name: "", hour: "", minute: ""
             }
+        }))
+    }
+
+    removeTask (id) {
+        this.setState(prevState =>({
+            events: prevState.events.filter(el => el.id !== id)
         }))
     }
 
@@ -45,7 +53,7 @@ class App extends Component {
     {
         
          const events = this.state.events.map(el => {
-            return  <CountDown key={el.id} name={el.name} hour={el.hour} minute={el.minute}/> }
+            return  <CountDown key={el.id} id={el.id} name={el.name} hour={el.hour} minute={el.minute} onRemove={(id)=>this.removeTask(id)}/> }
         )
     return (  
     <div>

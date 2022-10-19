@@ -10,4 +10,7 @@ html {
 
 body {
     background-color: #00a3fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

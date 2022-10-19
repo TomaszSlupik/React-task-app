@@ -4,6 +4,7 @@
 }
 
 .boxflex {
+    margin-top: 3em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,10 +17,12 @@
 
 .header {
     font-size: 3rem;
+    padding: 0.3em 0em;
 }
 
 label {
     font-size: 2rem;
+    padding: 0.3em 0em;
 }
 input {
     width: 95%;
