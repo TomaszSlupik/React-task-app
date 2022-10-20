@@ -12,6 +12,9 @@ function CountDown (props) {
                 <div className={styles.delete}>
                 <i class="times icon" onClick={()=>props.onRemove(props.id)}></i>
                 </div>
+                <div className={styles.edit}>
+                <i class="edit icon" onClick={()=>props.onEdit(props.id)}></i>
+                </div>
             </div>
             
         </div>

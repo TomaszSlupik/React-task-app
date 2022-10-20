@@ -24,6 +24,7 @@ class App extends Component {
         this.handleEditEvent = this.handleEditEvent.bind(this)
         this.addEvent = this.addEvent.bind(this)
         this.removeTask = this.removeTask.bind(this)
+        this.editTask = this.editTask.bind(this)
     }
 
     handleEditEvent (val) {
@@ -49,18 +50,24 @@ class App extends Component {
         }))
     }
 
+    editTask (id) {
+        console.log(id)
+    }
+
     render()
     {
         
          const events = this.state.events.map(el => {
-            return  <CountDown key={el.id} id={el.id} name={el.name} hour={el.hour} minute={el.minute} onRemove={(id)=>this.removeTask(id)}/> }
+            return  <CountDown key={el.id} id={el.id} name={el.name} hour={el.hour} minute={el.minute} onRemove={(id)=>this.removeTask(id)} onEdit={(id)=> this.editTask(id)}/> }
         )
     return (  
     <div>
+        <div>{events} </div>
         <EditEvent 
         onInputChnage={val=>this.handleEditEvent(val)} 
-        onSave={()=> this.addEvent()} />
-        <div>{events} </div>
+        onSave={()=> this.addEvent()} 
+        />
+        
     </div>
     )
     }

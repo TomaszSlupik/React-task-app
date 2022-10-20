@@ -1,5 +1,6 @@
 import React from "react";
 import "./EditEvent.css"
+import isValidNumber from "../utils/utils";
 
 function EditEvent (props) {
     return (
@@ -12,10 +13,10 @@ function EditEvent (props) {
                     <input type="text" id="name" name="name" onChange={(e)=> props.onInputChnage({[e.target.name] : [e.target.value]})}/>
 
                     <label htmlFor="hour">Godzina</label>
-                    <input type="tel" id="hour" name="hour" onChange={(e)=> props.onInputChnage({[e.target.name] : [e.target.value]})}/>
+                    <input type="tel" id="hour" name="hour" onChange={(e)=> props.onInputChnage({[e.target.name] : [e.target.value]})} onKeyPress={e => isValidNumber(e)}/>
 
                     <label htmlFor="minute">Minuty</label>
-                    <input type="tel" id="minute" name="minute" onChange={(e) => props.onInputChnage({[e.target.name] : [e.target.value]})}/>
+                    <input type="tel" id="minute" name="minute" onChange={(e) => props.onInputChnage({[e.target.name] : [e.target.value]})} onKeyPress={e=>isValidNumber(e)}/>
 
                     <div className="boxrow">
                         <button className="btn btn-danger">Cancel</button>
