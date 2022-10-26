@@ -10,10 +10,10 @@ function CountDown (props) {
             <div className={styles.box}>
                 <div>{props.name}</div><strong className={styles.timeHourMinute}>{props.hour}: {props.minute}</strong>
                 <div className={styles.delete}>
-                <i class="times icon" onClick={()=>props.onRemove(props.id)}></i>
+                <i className="times icon" onClick={()=>props.onRemove(props.id)}></i>
                 </div>
                 <div className={styles.edit}>
-                <i class="edit icon" onClick={()=>props.onEdit(props.id)}></i>
+                <i className="edit icon" onClick={()=>props.onEdit(props.id)}></i>
                 </div>
             </div>
             
@@ -23,8 +23,10 @@ function CountDown (props) {
 
 CountDown.propTypes = {
     name: PropTypes.string,
-
-    
+    hour: PropTypes.number,
+    minute: PropTypes.number,
+    onRemove: PropTypes.func,
+    onEdit: PropTypes.func
 }
 
 export default CountDown

@@ -12,13 +12,13 @@ class App extends Component {
         super()
         this.state = {
             events: [
-                {id:0, name: "śniadanie", hour: "07", minute: "00"},
-                {id:1, name: "obiad", hour: "15", minute: "00"},
-                {id:2, name: "kolacja", hour: "20", minute: "00"},
+                {id:0, name: "śniadanie", hour: 7, minute: 0},
+                {id:1, name: "obiad", hour: 15, minute: 0},
+                {id:2, name: "kolacja", hour: 20, minute: 0},
 
             ],
             editedEvents: {
-                id:uniqid(), name: "", hour: "", minute: ""
+                id:uniqid(), name: "", hour: -1, minute: -1
             }
         }
         this.handleEditEvent = this.handleEditEvent.bind(this)
@@ -36,12 +36,35 @@ class App extends Component {
     }
 
     addEvent () {
-        this.setState(prevState => ({
-            events: [...prevState.events, prevState.editedEvents],
-            editedEvents: {
-                id:uniqid(), name: "", hour: "", minute: ""
-            }
-        }))
+        this.setState(prevState=>{
+            const editEventExists = prevState.events.find(
+                el=>el.id === prevState.editedEvents.id)
+
+        let updateEvents;
+
+        if (editEventExists) {
+            updateEvents = prevState.events.map(el=>{
+                if(el.id === prevState.editedEvents.id) return prevState.editedEvents
+                else return el
+            })
+        } else {
+            updateEvents = [...prevState.events, prevState.editedEvents]
+        }
+
+        return {
+            events: updateEvents, 
+            editedEvents: {id:uniqid(), name: "", hour: -1, minute: -1}
+        }
+
+        })
+
+
+        // this.setState(prevState => ({
+        //     events: [...prevState.events, prevState.editedEvents],
+        //     editedEvents: {
+        //         id:uniqid(), name: "", hour: "", minute: ""
+        //     }
+        // }))
     }
 
     removeTask (id) {
@@ -51,7 +74,9 @@ class App extends Component {
     }
 
     editTask (id) {
-        console.log(id)
+        this.setState(prevState => ({
+            editedEvents: {...prevState.events[id]}
+        }))
     }
 
     render()
