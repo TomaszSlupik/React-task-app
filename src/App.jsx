@@ -25,6 +25,7 @@ class App extends Component {
         this.addEvent = this.addEvent.bind(this)
         this.removeTask = this.removeTask.bind(this)
         this.editTask = this.editTask.bind(this)
+        this.handleEditCancel = this.handleEditCancel.bind(this)
     }
 
     handleEditEvent (val) {
@@ -79,6 +80,12 @@ class App extends Component {
         }))
     }
 
+    handleEditCancel () {
+        this.setState({
+            editedEvents: {id:uniqid(), name: "", hour: -1, minute: -1}
+        })
+    }
+
     render()
     {
         
@@ -91,6 +98,7 @@ class App extends Component {
         <EditEvent 
         onInputChnage={val=>this.handleEditEvent(val)} 
         onSave={()=> this.addEvent()} 
+        onCancel={()=> this.handleEditCancel()}
         />
         
     </div>

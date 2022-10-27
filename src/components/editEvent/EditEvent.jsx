@@ -2,9 +2,16 @@ import React from "react";
 import "./EditEvent.css"
 import isValidNumber from "../utils/utils";
 import { parseInputAsNumber } from "../utils/utils";
-import PropTypes  from "prop-types";
+// import { isValidName } from "../utils/utils";
+// import { isValidHour } from "../utils/utils";
+// import { isValidMinute } from "../utils/utils";
+import PropTypes  from "prop-types"
 
 function EditEvent (props) {
+
+    const isFormEmpty = props.name === "" && props.hour === -1 && props.minute === -1
+
+
     return (
         <div>
             <div className="box">
@@ -21,7 +28,7 @@ function EditEvent (props) {
                     <input type="tel" id="minute" name="minute" value={props.minute === -1 ? "" : props.minute} onChange={(e) => props.onInputChnage({[e.target.name] : parseInputAsNumber(e.target.value)})} onKeyPress={e=>isValidNumber(e)}/>
 
                     <div className="boxrow">
-                        <button className="btn btn-danger">Cancel</button>
+                        <button disabled={isFormEmpty} className="btn btn-danger" onClick={()=> props.onCancel()}>Cancel</button>
                         <button className="btn btn-success" onClick={()=> props.onSave()}>Ok</button>
                     </div>
 
@@ -37,7 +44,8 @@ EditEvent.propTypes = {
     hour: PropTypes.number,
     minute: PropTypes.number,
     onInputChnage: PropTypes.func, 
-    onSave: PropTypes.func
+    onSave: PropTypes.func, 
+    onCancel: PropTypes.func
 }
 
 export default EditEvent
