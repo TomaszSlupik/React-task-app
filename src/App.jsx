@@ -11,6 +11,11 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
+            now: {
+                hour:new Date().getHours(),
+                minute: new Date().getMinutes(),
+                second: new Date().getSeconds(),
+            },
             events: [
                 {id:0, name: "śniadanie", hour: 7, minute: 0},
                 {id:1, name: "obiad", hour: 15, minute: 0},
@@ -85,12 +90,14 @@ class App extends Component {
             editedEvents: {id:uniqid(), name: "", hour: -1, minute: -1}
         })
     }
+    
 
     render()
     {
         
          const events = this.state.events.map(el => {
-            return  <CountDown key={el.id} id={el.id} name={el.name} hour={el.hour} minute={el.minute} onRemove={(id)=>this.removeTask(id)} onEdit={(id)=> this.editTask(id)}/> }
+            return  <CountDown key={el.id} id={el.id} name={el.name} hour={el.hour} minute={el.minute} onRemove={(id)=>this.removeTask(id)} onEdit={(id)=> this.editTask(id)}
+            timeNow={this.state.now}/> }
         )
     return (  
     <div>

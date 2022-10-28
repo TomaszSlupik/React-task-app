@@ -31,3 +31,7 @@ export function parseInputAsNumber (val) {
 //     if (val >=0 && val < 60) return true
 //     return false
 // }
+
+export function hourMinutesToSeconds (h, m) {
+    return h * 3600 + m * 60;
+}
