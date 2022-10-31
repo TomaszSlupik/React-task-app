@@ -26,11 +26,29 @@ class App extends Component {
                 id:uniqid(), name: "", hour: -1, minute: -1
             }
         }
+        this.timer = this.timer.bind(this)
         this.handleEditEvent = this.handleEditEvent.bind(this)
         this.addEvent = this.addEvent.bind(this)
         this.removeTask = this.removeTask.bind(this)
         this.editTask = this.editTask.bind(this)
         this.handleEditCancel = this.handleEditCancel.bind(this)
+    }
+
+    timer () {
+        this.setState({
+            now: {
+                hour:new Date().getHours(),
+                minute: new Date().getMinutes(),
+                second: new Date().getSeconds(),
+            },
+        })
+    }
+
+    componentDidMount(){
+        const storageEvents = JSON.parse(localStorage.getItem("events")) || [];
+        this.setState({events: storageEvents})
+        const interwaliID = setInterval(this.timer, 1000);
+        this.setState ({interwaliID: interwaliID})
     }
 
     handleEditEvent (val) {
@@ -62,7 +80,7 @@ class App extends Component {
             editedEvents: {id:uniqid(), name: "", hour: -1, minute: -1}
         }
 
-        })
+        }, ()=> localStorage.setItem("events", JSON.stringify(this.state.events)))
 
 
         // this.setState(prevState => ({
@@ -76,7 +94,7 @@ class App extends Component {
     removeTask (id) {
         this.setState(prevState =>({
             events: prevState.events.filter(el => el.id !== id)
-        }))
+        }), ()=> localStorage.setItem("events", JSON.stringify(this.state.events)))
     }
 
     editTask (id) {

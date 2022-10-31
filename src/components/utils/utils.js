@@ -35,3 +35,17 @@ export function parseInputAsNumber (val) {
 export function hourMinutesToSeconds (h, m) {
     return h * 3600 + m * 60;
 }
+
+export function secondsToHourMinuteSecond (s) {
+    let seconds = s
+
+    const hour = Math.floor(seconds/ 3600).toString().padStart(2, 0)
+    seconds -= hour * 3600
+
+    const minutes = Math.floor(seconds/ 60).toString().padStart(2,0)
+   
+
+    seconds -= minutes * 60
+    seconds =  seconds.toString().padStart(2,0)
+    return `${hour}: ${minutes}: ${seconds}`
+}
